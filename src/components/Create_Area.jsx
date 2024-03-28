@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // create the whole form box
-function CreateArea(props) {
+function Create_Area(props) {
   const [note, setNote] = useState({
     title: "",
     content: ""
@@ -53,4 +53,4 @@ function CreateArea(props) {
   );
 }
 
-export default CreateArea;
+export default Create_Area;
