@@ -7,23 +7,27 @@ import CreateArea from "./CreateArea";
 import info from "../notes";
 
 function App() {
+
   const [notes, setNotes] = useState([...info]);
 
-  function addNote(newNote) {
-    if (newNote.trim().length !== 0){
-      setNotes((prevNotes) => {
-        return [...prevNotes, newNote];
+  //this is add note button
+  function add_note(new_note) {
+      // if (newNote.trim().length < 1){
+      setNotes((prev_note) => {
+        return [...prev_note, new_note];
       });
-    }
+      // }
   }
 
-  function deleteNote(id) {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((noteItem, index) => {
+  //delete the button note
+  function delete_note(id) {
+    setNotes((prev_note) => {
+      return prev_note.filter((noteItem, index) => {
         return index !== id;
       });
     });
   }
+
   /*
   const cardComponents = [];
   for (let i = 0; i < info.length; i++) {
@@ -39,9 +43,11 @@ function App() {
   }*/
 
   return (
+    // style = {{minHeight:"screen"}}
     <div>
+      {/* header file */}
       <Header />
-      <CreateArea onAdd={addNote} />
+      <CreateArea onAdd={add_note} />
       {/* {cardComponents} */}
       {notes.map((noteItem, index) => {
         return (
@@ -50,10 +56,11 @@ function App() {
             id={index}
             title={noteItem.title}
             content={noteItem.content}
-            onDelete={deleteNote}
+            onDelete={delete_note}
           />
         );
       })}
+      {/* footer file */}
       <Footer />
     </div>
   );

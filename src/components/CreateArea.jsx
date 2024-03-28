@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 
+// create the whole form box
 function CreateArea(props) {
   const [note, setNote] = useState({
     title: "",
     content: ""
   });
 
-  function handleChange(event) {
+  function change(event) {
     const { name, value } = event.target;
 
     setNote(prevNote => {
-      return {
-        ...prevNote,
-        [name]: value
-      };
+      return { ...prevNote, [name]: value };
     });
   }
 
-  function submitNote(event) {
+  //submit note function
+  function submit_note(event) {
     props.onAdd(note);
     setNote({
       title: "",
@@ -26,25 +25,29 @@ function CreateArea(props) {
     event.preventDefault();
   }
 
+  //this is form for create notes
   return (
     <div>
       <form>
+        {/* displays the title */}
         <input
           name="title"
-          onChange={handleChange}
+          onChange={change}
           value={note.title}
           placeholder="Title"
           required
         />
+        {/* displays the textarea */}
         <textarea
           name="content"
-          onChange={handleChange}
+          onChange={change}
           value={note.content}
           placeholder="Take a note..."
           rows="3"
           required
         />
-        <button onClick={submitNote}>Add</button>
+        {/* submit button on click */}
+        <button onClick={submit_note}>Add</button>
       </form>
     </div>
   );
